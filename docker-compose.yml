@@ -1,0 +1,50 @@
+name: sandwheel-store
+
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: woodtools
+      MYSQL_USER: woodtools
+      MYSQL_PASSWORD: woodtools_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:6.5-php8.2-apache
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: woodtools
+      WORDPRESS_DB_USER: woodtools
+      WORDPRESS_DB_PASSWORD: woodtools_pass
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG', true);
+        define('WP_DEBUG_LOG', true);
+        define('WP_MEMORY_LIMIT', '256M');
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_pass
+
+volumes:
+  db_data:
+  wordpress_data:

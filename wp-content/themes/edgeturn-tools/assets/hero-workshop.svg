@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Workshop bench with grinding wheel shapes">
+  <rect width="1600" height="900" fill="#2c3438"/>
+  <path d="M0 640h1600v260H0z" fill="#202629"/>
+  <path d="M80 620h1440v52H80z" fill="#6f4b34"/>
+  <path d="M120 576h1360v56H120z" fill="#9a6d48"/>
+  <circle cx="1110" cy="420" r="178" fill="#596973"/>
+  <circle cx="1110" cy="420" r="128" fill="#2b3337"/>
+  <circle cx="1110" cy="420" r="42" fill="#c6873f"/>
+  <circle cx="710" cy="448" r="118" fill="#7d8c92"/>
+  <circle cx="710" cy="448" r="82" fill="#2c3438"/>
+  <circle cx="710" cy="448" r="24" fill="#f2b705"/>
+  <rect x="260" y="310" width="280" height="36" rx="5" fill="#c6873f" transform="rotate(-14 400 328)"/>
+  <rect x="298" y="342" width="212" height="34" rx="4" fill="#3f4a4f" transform="rotate(-14 404 359)"/>
+  <path d="M148 270h236v310H148z" fill="#273034"/>
+  <path d="M180 304h172v38H180zM180 376h172v38H180zM180 448h172v38H180z" fill="#536b78"/>
+  <path d="M1230 610l88-240 86 240z" fill="#b35f2a"/>
+  <path d="M90 690h1420" stroke="#8d9ca3" stroke-width="4" opacity=".45"/>
+  <path d="M0 0h1600v900H0z" fill="url(#grain)" opacity=".18"/>
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="4" stitchTiles="stitch"/>
+    </filter>
+    <pattern id="grain" width="180" height="180" patternUnits="userSpaceOnUse">
+      <rect width="180" height="180" filter="url(#noise)" opacity=".45"/>
+    </pattern>
+  </defs>
+</svg>
