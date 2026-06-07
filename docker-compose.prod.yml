@@ -1,0 +1,46 @@
+name: dmsphd-store
+
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-woodtools}
+      MYSQL_USER: ${MYSQL_USER:-woodtools}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-woodtools_pass}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:6.5-php8.2-apache
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-80}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-woodtools}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-woodtools}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-woodtools_pass}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG', ${WORDPRESS_DEBUG:-false});
+        define('WP_MEMORY_LIMIT', '256M');
+        if (isset($$_SERVER['HTTP_CF_VISITOR'])) {
+          $$visitor = json_decode(stripslashes($$_SERVER['HTTP_CF_VISITOR']), true);
+          if (isset($$visitor['scheme']) && $$visitor['scheme'] === 'https') {
+            $$_SERVER['HTTPS'] = 'on';
+          }
+        }
+        if (isset($$_SERVER['HTTP_X_FORWARDED_PROTO']) && $$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+          $$_SERVER['HTTPS'] = 'on';
+        }
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+
+volumes:
+  db_data:
+  wordpress_data:

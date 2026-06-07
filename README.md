@@ -30,7 +30,7 @@ After cloning on a new machine/server, restore the included database snapshot:
 ./scripts/restore-db.sh
 ```
 
-See [docs/migration.md](docs/migration.md) for the full migration checklist.
+See [docs/migration.md](docs/migration.md) for the full migration checklist, and [docs/cloudflare-host-deploy.md](docs/cloudflare-host-deploy.md) for the recommended Cloudflare + host deployment.
 
 ## Included Store Assets
 

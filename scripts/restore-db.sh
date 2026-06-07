@@ -8,6 +8,17 @@ if [[ ! -f "$backup_file" ]]; then
   exit 1
 fi
 
-docker compose exec -T db mysql -u woodtools -pwoodtools_pass woodtools < "$backup_file"
+if [[ -f .env ]]; then
+  set -a
+  source .env
+  set +a
+fi
+
+db_name="${MYSQL_DATABASE:-woodtools}"
+db_user="${MYSQL_USER:-woodtools}"
+db_password="${MYSQL_PASSWORD:-woodtools_pass}"
+compose_file="${COMPOSE_FILE:-docker-compose.yml}"
+
+docker compose -f "$compose_file" exec -T db mysql -u "$db_user" "-p$db_password" "$db_name" < "$backup_file"
 
 echo "Database restored from $backup_file"
