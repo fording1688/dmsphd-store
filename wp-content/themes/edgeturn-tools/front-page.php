@@ -163,8 +163,8 @@ $cat_saw = edgeturn_tools_product_category_url('saw-blades');
             <span>Diamond tools, glass cutting tools, sanding supplies, and grinding wheels.</span>
         </div>
         <div class="trust-item">
-            <strong>Spec-first shopping</strong>
-            <span>Product pages surface grit, size, arbor, pack count, and application details.</span>
+            <strong>Need help choosing?</strong>
+            <span>Email <a href="mailto:zzdm168@outlook.com">zzdm168@outlook.com</a> for fitment, wholesale, and product questions.</span>
         </div>
         <div class="trust-item">
             <strong>Repeatable imports</strong>

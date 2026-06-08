@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
         </section>
         <section>
             <h3>Support</h3>
-            <p>Email: support@example.com</p>
+            <p>Email: <a href="mailto:zzdm168@outlook.com">zzdm168@outlook.com</a></p>
             <p>Shipping, returns, fitment questions, and wholesale inquiries.</p>
         </section>
     </div>
